@@ -1,12 +1,14 @@
-function matchesPerYear(match){
-    const year = match.reduce((year, eachMatch) => {
-        if(!year[eachMatch["season"]]){
-            year[eachMatch["season"]] = 0;
+function matchPerYear(match){
+    if(!match){
+        return {}
+    }
+   const playedPerYear = match.reduce((previousYear, eachMatch) => {
+        if(!previousYear[eachMatch["season"]]){
+            previousYear[eachMatch["season"]] = 0;
         }
-        else{
-            year[eachMatch["season"]] += year[eachMatch["season"]];
-        }
-        return acc;
-    })
+        previousYear[eachMatch["season"]]++;
+        return previousYear;
+   }, {})
+   return playedPerYear;
 }
-
+module.exports = matchPerYear;
